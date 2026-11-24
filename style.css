@@ -1,0 +1,112 @@
+html {
+  height: 100%;
+  background: 50% 50% no-repeat
+    url('data:image/svg+xml,<svg viewBox="-20 -5 60 40" width="140" xmlns="http://www.w3.org/2000/svg" opacity="0.2"><path d="M1 8l11-7 11 7v8l-11 7-11-7zm0 0l11 8 11-8m0 8L12 8 1 16M12 1v7m0 8v7" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"/><text x="-12" y="32" font-size="5" font-family="monospace" fill="currentColor">Built on CodePen</text></svg>');
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #17232E;
+  font-family: Arial, sans-serif;
+}
+
+.word {
+  display: flex;
+  color: #F5D77A;
+  font-size: clamp(36px, 8vw, 76px);
+  font-weight: 700;
+  letter-spacing: 8px;
+}
+
+.word span {
+  display: inline-block;
+  opacity: 0;
+  animation: appear 0.3s ease forwards;
+}
+
+@keyframes appear {
+  to {
+    opacity: 1;
+  }
+}
+
+/* 글자 순차 등장: 0.45초 간격 */
+.word span:nth-child(1) { animation-delay: 0s; }
+.word span:nth-child(2) { animation-delay: 0.45s; }
+.word span:nth-child(3) { animation-delay: 0.9s; }
+.word span:nth-child(4) { animation-delay: 1.35s; }
+.word span:nth-child(5) { animation-delay: 1.8s; }
+.word span:nth-child(6) { animation-delay: 2.25s; }
+.word span:nth-child(7) { animation-delay: 2.7s; }
+.word span:nth-child(8) { animation-delay: 3.15s; }
+
+/* 첫 번째 O */
+.word span.jump-1 {
+  animation:
+    appear 0.3s ease 0.45s forwards,
+    jump 0.45s ease 3.95s 1;
+}
+
+/* 두 번째 O */
+.word span.jump-2 {
+  animation:
+    appear 0.3s ease 2.25s forwards,
+    jump 0.45s ease 4.55s 1;
+}
+
+@keyframes jump {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  45% {
+    transform: translateY(-12px);
+  }
+}
+
+/* 세 번째 O: 등장 → 점프 → 3회 깜빡임 */
+.word .last-o {
+  animation: finalSequence 4.8s linear 3.6s forwards;
+}
+
+@keyframes finalSequence {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  6.25% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  37.5% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  40.625% {
+    opacity: 1;
+    transform: translateY(-12px);
+  }
+  43.75% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* 깜빡임 1회 */
+  50% { opacity: 0; }
+  56.25% { opacity: 1; }
+
+  /* 깜빡임 2회 */
+  62.5% { opacity: 0; }
+  68.75% { opacity: 1; }
+
+  /* 깜빡임 3회 */
+  75% { opacity: 0; }
+  81.25% { opacity: 1; }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
